@@ -1,0 +1,16 @@
+'use strict';
+const experiences = [
+ {date:'2025 — Actualidad',title:'Noticiero 90 Minutos',description:'Producción, edición y desarrollo de contenidos periodísticos para televisión y plataformas digitales: entrevistas, reportajes y reels.'},
+ {date:'2026 — Actualidad',title:'Global QIQ',description:'Entrevistas y redacción de relatorías sobre propietarios de predios vinculados a proyectos de bonos de carbono, sus historias familiares y la transformación del territorio.'},
+ {date:'2025 — Actualidad',title:'RTVC · Programa Onda Pacífico',description:'Producción cultural y perfiles periodísticos que visibilizan procesos, liderazgos y narrativas del Pacífico colombiano.'},
+ {date:'2024 — 2025',title:'Yo Soy Pacífico',description:'Producción de entrevistas, preparación de preguntas, acompañamiento de conversaciones y construcción de contenidos.'},
+ {date:'2024 — 2025',title:'Descubriendo Talentos',description:'Entrevistas en cabina a talentos caleños, edición de contenidos y gestión de publicaciones en redes sociales.'},
+ {date:'2025 — 2026',title:'Fundación Herencia de Timbiquí',description:'Producción y edición de videos para difusión institucional y plataformas digitales.'},
+ {date:'2025 — 2026',title:'ASOJEM',description:'Maestra de ceremonias y creadora de contenido para redes sociales; producción y edición de piezas audiovisuales.'},
+ {date:'2024',title:'Biblioteca Departamental Jorge Garcés Borrero',description:'Experiencia como auxiliar administrativa en dos periodos de 2024.'},
+ {date:'2022 — 2023',title:'Corporación Corpocurrulao',description:'Auxiliar administrativa y apoyo logístico.'}
+];
+const list=document.querySelector('#experience-list');
+experiences.forEach(({date,title,description})=>{const article=document.createElement('article');article.className='experience-item reveal';const time=document.createElement('span');time.className='experience-date';time.textContent=date;const body=document.createElement('div');const heading=document.createElement('h3');heading.textContent=title;const paragraph=document.createElement('p');paragraph.textContent=description;body.append(heading,paragraph);const arrow=document.createElement('span');arrow.className='arrow';arrow.setAttribute('aria-hidden','true');arrow.textContent='↗';article.append(time,body,arrow);list.append(article)});
+const toggle=document.querySelector('.menu-toggle');const links=document.querySelector('.nav-links');toggle.addEventListener('click',()=>{const open=links.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Cerrar menú':'Abrir menú')});links.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{links.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menú')}));document.querySelector('#year').textContent=new Date().getFullYear();
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
